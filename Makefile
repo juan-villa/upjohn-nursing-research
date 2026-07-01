@@ -54,11 +54,13 @@ figures:
 	$(PY) src/make_supply_vs_aging_scatter.py        # -> figures/scatter_*.png
 
 # ---- Compile the paper -----------------------------------------------------
+PAPER_TEX := michigan_nurse_workforce_revised-FINAL
 paper:
-	cd paper && pdflatex -interaction=nonstopmode michigan_nurse_workforce_revised-FINAL.tex \
-	  && bibtex michigan_nurse_workforce_revised-FINAL || true \
-	  && pdflatex -interaction=nonstopmode michigan_nurse_workforce_revised-FINAL.tex \
-	  && pdflatex -interaction=nonstopmode michigan_nurse_workforce_revised-FINAL.tex
+	-cd paper && pdflatex -interaction=nonstopmode $(PAPER_TEX).tex
+	-cd paper && bibtex $(PAPER_TEX)
+	-cd paper && pdflatex -interaction=nonstopmode $(PAPER_TEX).tex
+	-cd paper && pdflatex -interaction=nonstopmode $(PAPER_TEX).tex
+	@test -f paper/$(PAPER_TEX).pdf && echo ">> Built paper/$(PAPER_TEX).pdf"
 
 # ---- Advanced: rebuild analytic panels from raw sources --------------------
 # Requires the licensed inputs in data/raw/ and a CENSUS_API_KEY. This does NOT

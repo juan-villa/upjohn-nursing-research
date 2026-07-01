@@ -20,3 +20,11 @@ data/raw/
 
 # ---- Superseded drafts, dupes, working intermediates (kept locally only) ----
 archive/
+
+# LaTeX build artifacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.toc
