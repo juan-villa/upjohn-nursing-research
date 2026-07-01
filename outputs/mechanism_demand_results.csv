@@ -1,0 +1,13 @@
+mechanism,occupation,outcome,exposure,coef,se,p,sig,N,counties,within_r2
+M1 Baseline demand,RN,rn_postings_per_10k,share_65plus,-1.475,1.143,0.1973,,1077,83.0,0.027
+M2 Shortage pressure,RN,rn_postings_per_10k,rn_per_100k_lag1,-0.012,0.008,0.1572,,828,83.0,0.034
+M3 Training relief,RN,rn_postings_per_10k,ipeds_rn_per_10k_lag1,-0.012,0.096,0.8973,,828,83.0,0.034
+M3b Training (total),RN,rn_postings_per_10k,ipeds_rn_per_10k_lag1,-0.035,0.093,0.7094,,994,83.0,0.023
+M4 Workforce aging,RN,rn_postings_per_10k,rn_age_55plus_pct_lag1,-0.204,0.365,0.577,,745,83.0,0.03
+M5 Employer/labor,RN,rn_postings_per_10k,operating_margin_wmean,1.206,1.857,0.5164,,421,72.0,0.03
+M1 Baseline demand,LPN,lpn_postings_per_10k,share_65plus,-0.405,0.252,0.1086,,1077,83.0,0.016
+M2 Shortage pressure,LPN,lpn_postings_per_10k,lpn_per_100k_lag1,-0.003,0.006,0.6502,,826,83.0,0.021
+M3 Training relief,LPN,lpn_postings_per_10k,ipeds_lpn_per_10k_lag1,0.022,0.065,0.7399,,826,83.0,0.021
+M3b Training (total),LPN,lpn_postings_per_10k,ipeds_lpn_per_10k_lag1,0.004,0.047,0.9361,,994,83.0,0.016
+M4 Workforce aging,LPN,lpn_postings_per_10k,lpn_age_55plus_pct_lag1,0.032,0.023,0.1505,,744,83.0,0.029
+M5 Employer/labor,LPN,lpn_postings_per_10k,operating_margin_wmean,0.141,0.288,0.6244,,412,72.0,0.053

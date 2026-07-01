@@ -1,0 +1,22 @@
+# ---- OS / editor cruft ----
+.DS_Store
+*.swp
+.Rhistory
+.ipynb_checkpoints/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+tmp/matplotlib/
+
+# ---- Local tooling / secrets ----
+.claude/
+.env
+
+# ---- Raw & licensed data (NOT redistributable; see docs/DATA_ACCESS.md) ----
+data/raw/
+
+# ---- Superseded drafts, dupes, working intermediates (kept locally only) ----
+archive/

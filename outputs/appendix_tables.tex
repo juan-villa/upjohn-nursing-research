@@ -1,0 +1,199 @@
+\begin{table}[!htbp]
+\centering
+\caption{Baseline distribution models (two-way fixed effects)}
+\label{tab:baseline}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $5.77^{**}$ & (1.83) & $1.02$ & (1.30) \\
+Share aged 65--74 (pp) & $-1.18$ & (2.06) & $-1.88^{\dagger}$ & (0.97) \\
+Population growth rate & $-7.81$ & (38.47) & $-49.13^{***}$ & (13.55) \\
+Hospital beds per 1{,}000 & $-1.09$ & (0.84) & $-2.54^{***}$ & (0.44) \\
+NH beds per 1{,}000 (65$+$) & $0.45$ & (1.04) & $-3.47^{***}$ & (0.52) \\
+Poverty rate (pp) & $0.69$ & (0.49) & $0.07$ & (0.26) \\
+Bachelor's$+$ share (pp) & $0.89$ & (0.67) & $0.79^{*}$ & (0.32) \\
+IPEDS RN grads/10k ($t-1$) & $0.024$ & (0.119) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.416^{***}$ & (0.055) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 83 & & 83 & \\
+Observations & 913 & & 911 & \\
+Within $R^{2}$ & 0.088 & & 0.164 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Vacancy-pressure models (postings per 10{,}000, TWFE)}
+\label{tab:vacancy}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN postings} & \multicolumn{2}{c}{LPN postings} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $-5.35^{*}$ & (2.64) & $-1.02$ & (0.83) \\
+Share aged 65--74 (pp) & $-2.02$ & (2.51) & $-0.70$ & (0.64) \\
+Population growth rate & $52.47$ & (149.33) & $-3.20$ & (22.89) \\
+HPSA (primary care) & $-9.94$ & (9.94) & $0.75$ & (1.36) \\
+Hospital beds per 1{,}000 & $1.61$ & (1.10) & $0.10$ & (0.21) \\
+NH beds per 1{,}000 (65$+$) & $4.49^{***}$ & (1.24) & $-0.51$ & (0.34) \\
+Poverty rate (pp) & $1.54^{*}$ & (0.68) & $0.25$ & (0.26) \\
+Bachelor's$+$ share (pp) & $0.83$ & (0.55) & $0.26$ & (0.23) \\
+RN supply ($t-1$) & $-0.10$ & (0.08) & --- &  \\
+LPN supply ($t-1$) & --- &  & $-0.03$ & (0.06) \\
+IPEDS RN grads/10k ($t-1$) & $-0.021$ & (0.105) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.022$ & (0.068) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 83 & & 83 & \\
+Observations & 828 & & 826 & \\
+Within $R^{2}$ & 0.043 & & 0.016 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Retention-pressure models (two-way fixed effects)}
+\label{tab:retention}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $1.38^{*}$ & (0.68) & $0.73$ & (1.21) \\
+Share aged 65--74 (pp) & $-0.02$ & (0.43) & $-0.48$ & (0.64) \\
+Population growth rate & $-113.29^{***}$ & (15.46) & $-67.39^{***}$ & (10.68) \\
+Hospital beds per 1{,}000 & $-0.17$ & (0.31) & $-2.02^{***}$ & (0.24) \\
+NH beds per 1{,}000 (65$+$) & $1.18^{*}$ & (0.54) & $-3.31^{***}$ & (0.78) \\
+Poverty rate (pp) & $0.05$ & (0.18) & $0.03$ & (0.17) \\
+Bachelor's$+$ share (pp) & $0.18$ & (0.20) & $0.62^{\dagger}$ & (0.33) \\
+RN supply ($t-1$) & $0.81^{***}$ & (0.05) & --- &  \\
+LPN supply ($t-1$) & --- &  & $0.33^{\dagger}$ & (0.17) \\
+IPEDS RN grads/10k ($t-1$) & $0.007$ & (0.038) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.261^{***}$ & (0.075) \\
+RN aged 55$+$ share ($t-1$) & $0.069$ & (0.102) & --- &  \\
+RN aged $<$35 share ($t-1$) & $0.002$ & (0.144) & --- &  \\
+LPN aged 55$+$ share ($t-1$) & --- &  & $-0.021$ & (0.021) \\
+LPN aged $<$35 share ($t-1$) & --- &  & $0.096^{*}$ & (0.046) \\
+Mean commute (min) & $0.25$ & (0.25) & $0.35$ & (0.33) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 83 & & 83 & \\
+Observations & 664 & & 662 & \\
+Within $R^{2}$ & 0.723 & & 0.288 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Employer-capacity models (two-way fixed effects)}
+\label{tab:employer}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $1.19$ & (0.76) & $2.13$ & (1.57) \\
+Share aged 65--74 (pp) & $0.16$ & (0.46) & $-0.66$ & (0.77) \\
+Population growth rate & $-107.76^{***}$ & (12.66) & $-56.44^{***}$ & (11.35) \\
+Hospital beds per 1{,}000 & $-0.15$ & (0.39) & $-2.18^{***}$ & (0.50) \\
+NH beds per 1{,}000 (65$+$) & $0.40$ & (0.41) & $-2.10^{***}$ & (0.60) \\
+Poverty rate (pp) & $0.45^{*}$ & (0.20) & $0.00$ & (0.29) \\
+Bachelor's$+$ share (pp) & $0.12$ & (0.24) & $0.69$ & (0.58) \\
+RN supply ($t-1$) & $0.84^{***}$ & (0.05) & --- &  \\
+LPN supply ($t-1$) & --- &  & $0.31$ & (0.19) \\
+IPEDS RN grads/10k ($t-1$) & $0.017$ & (0.052) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.381^{*}$ & (0.191) \\
+Operating margin (wtd.\ mean) & $-0.38$ & (0.36) & $-0.27$ & (0.29) \\
+Single-hospital county & $0.33$ & (0.90) & $0.52$ & (0.80) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 73 & & 73 & \\
+Observations & 541 & & 540 & \\
+Within $R^{2}$ & 0.773 & & 0.244 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Within-county (TWFE) vs.\ between-county (pooled OLS) baseline estimates}
+\label{tab:pooled}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & TWFE & Pooled & TWFE & Pooled \\
+\midrule
+Share aged 75$+$ (pp) & $5.77^{**}$ & $4.06^{*}$ & $1.02$ & $7.14^{***}$ \\
+Share aged 65--74 (pp) & $-1.18$ & $-2.12$ & $-1.88^{\dagger}$ & $-4.48^{***}$ \\
+Hospital beds per 1{,}000 & $-1.09$ & $3.18^{*}$ & $-2.54^{***}$ & $0.93^{\dagger}$ \\
+NH beds per 1{,}000 (65$+$) & $0.45$ & $-5.82$ & $-3.47^{***}$ & $8.24^{***}$ \\
+Poverty rate (pp) & $0.69$ & $-2.23^{***}$ & $0.07$ & $-0.12$ \\
+Bachelor's$+$ share (pp) & $0.89$ & $2.30^{***}$ & $0.79^{*}$ & $-0.46^{*}$ \\
+IPEDS RN grads/10k ($t-1$) & $0.024$ & $0.239$ & --- & --- \\
+IPEDS LPN grads/10k ($t-1$) & --- & --- & $0.416^{***}$ & $0.665^{***}$ \\
+\midrule
+County \& year FE & Yes & No & Yes & No \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} Pooled columns add a constant and recover between-county variation; they are descriptive benchmarks subject to cross-sectional omitted-variable bias, not more credible than the TWFE estimates.
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Training-pipeline coefficient across specifications}
+\label{tab:training}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{IPEDS LPN/10k ($t-1$)} & \multicolumn{2}{c}{IPEDS RN/10k ($t-1$)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Specification & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Baseline (no lagged DV) & $0.416^{***}$ & (0.055) & $0.024$ & (0.119) \\
+Training spec (lagged DV) & $0.264^{***}$ & (0.079) & $0.009$ & (0.040) \\
+Two-year lag (baseline) & $0.259^{**}$ & (0.090) & --- &  \\
+Log-count (common denom.) & $0.033^{**}$ & (0.012) & --- &  \\
+\quad Wild-cluster bootstrap $p$ & \multicolumn{2}{c}{$0.057$} & \multicolumn{2}{c}{---} \\
+\midrule
+\multicolumn{5}{l}{\textit{Urbanicity (LPN pipeline)}} \\
+\quad MSA only (51) & $0.457^{**}$ & (0.167) & & \\
+\quad Rural only (32)$^{a}$ & $0.181^{\dagger}$ & (0.095) & & \\
+\quad Rural $\times$ pipeline & $-0.124$ & (0.120) & & \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} County and year FE, county-clustered SEs. Baseline uses the Table~\ref{tab:baseline} controls; the training spec adds a lagged dependent variable, lagged entry-age share, and unemployment. Log-count uses $\log(1+\text{LPN count})$ with $\log(\text{pop})$ offset (a log--log elasticity). $^{a}$ identified off a single rural program county. $^{\dagger}p<.10$, $^{*}p<.05$, $^{**}p<.01$, $^{***}p<.001$.
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Leads-and-lags (pre-trends) test, LPN pipeline}
+\label{tab:pretrends}
+\small
+\begin{tabular}{lcc}
+\toprule
+Term & Coef. & (SE) \\
+\midrule
+IPEDS LPN ($t+2$) & $0.158$ & (0.122) \\
+IPEDS LPN ($t+1$) & $-0.043$ & (0.106) \\
+IPEDS LPN ($t-1$) & $0.204^{**}$ & (0.079) \\
+IPEDS LPN ($t-2$) & $0.141^{*}$ & (0.068) \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} Two-way FE, county-clustered SEs. Insignificant leads ($t+1$, $t+2$) indicate no pre-trends; significant lags support a forward-looking pipeline. $^{*}p<.05$, $^{**}p<.01$.
+\end{table}

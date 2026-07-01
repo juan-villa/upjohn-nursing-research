@@ -1,0 +1,645 @@
+\documentclass[12pt]{article}
+
+% --- Core packages ---
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\graphicspath{{figures/}{figures/tables/}}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[authoryear]{natbib}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+% \usepackage{booktabs} loaded above
+\usepackage{dcolumn}
+\usepackage{array}
+\usepackage{placeins}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=blue,
+    urlcolor=blue
+}
+
+\title{\textbf{The Geography of Care in Michigan: Geographic Mismatch and Policy Levers}}
+\author{
+    Jack Chepin \and Jai Correa \and James Duce 
+    \and Bishwa Rai \and Juan Villa
+}
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+\onehalfspacing
+
+\begin{abstract}
+
+Michigan faces growing concerns about nurse shortages, particularly in rural and aging communities, yet evidence on the determinants of local nurse supply remains limited. Using county-level panel healthcare workforce data from 2012--2023, we estimate two-way fixed-effects models to examine the geographic distribution of Registered Nurses (RNs) and Licensed Practical Nurses (LPNs) across Michigan's 83 counties. The strongest finding is that local LPN training output predicts subsequent LPN workforce supply, while RN training output shows no statistically significant relationship with county-level RN supply, consistent with greater geographic mobility among RNs. Educational attainment is positively associated with nurse supply; demographic demand and healthcare capacity measures show less consistent effects. These findings suggest that expanding local training capacity may be effective for addressing LPN shortages, while improving RN availability likely requires both training and retention policies.
+
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+% -----------------------------------------------
+\section{Introduction}
+% -----------------------------------------------
+
+
+Michigan faces a nursing workforce problem that is best understood as a geographic mismatch rather than a simple statewide shortage. National and state-level projections show that registered nurse (RN) shortages are expected to persist into the 2030s, with HRSA projecting an 18 percent RN shortage in Michigan by 2038 \citep{hrsa2025}. Statewide figures, however, obscure the county-level variation most relevant for policy. The literature on healthcare workforce maldistribution shows that shortage areas are not randomly distributed. Instead, they tend to align with rurality, poverty, low educational attainment, older populations, and other markers of structural disadvantage \citep{streeter2020}. Nursing-specific evidence similarly shows that federally designated nurse-shortage counties have historically been concentrated in nonmetropolitan areas \citep{stratton1995redefining}. The core question, then, is not only whether Michigan has enough nurses in aggregate, but whether RN and licensed practical nurse (LPN) supply is located where population need is greatest.
+
+Standard policy responses often emphasize wages, loan incentives, and recruitment programs, but the labor-supply literature suggests that these tools have limited reach. \citet{askildsen2003} estimate nurse labor-supply elasticities near 0.2, implying that moderate wage increases generate only modest increases in hours worked among employed nurses. \citet{hanel2014} show that wage responsiveness is larger once entry into and exit from nursing are included, but this effect operates mainly by drawing nursing qualification holders back into the profession rather than by substantially expanding hours among the current workforce. At the employer level, \citet{staiger2010} find short-run firm-level supply elasticities close to zero, consistent with monopsonistic wage-setting in local hospital labor markets. These constraints are likely most binding in rural counties, where smaller labor markets and dominant healthcare employers limit the ability of wage policy alone to correct maldistribution.
+
+Measuring demand is also difficult because observed healthcare utilization is not the same as underlying need. In rural and underserved areas, utilization may be low because care is unavailable, unaffordable, geographically distant, or otherwise inaccessible \citep{reilly2021}. Evidence from a large Midwestern healthcare system supports this concern: \citet{nuako2022} find that rural clinic patients had worse measured health status than urban clinic patients, yet lower outpatient utilization after adjustment for demographic characteristics and health status. At the same time, the supplier-induced demand literature warns that utilization may partly reflect provider supply in high-capacity areas rather than only patient need \citep{evans1974,grytten2001}. For this reason, our county-level analysis relies on demographic and structural proxies for demand rather than utilization alone.
+
+This paper examines the geographic distribution of RN and LPN supply across Michigan's 83 counties and estimates the county characteristics associated with differences in nurse supply. Using a county-year panel with two-way fixed effects, we relate nurse supply per 10{,}000 residents to structural demand measures, local training pipeline capacity, healthcare capacity, and socioeconomic disadvantage. The analysis distinguishes between counties where shortage pressure is primarily demand-driven, reflecting aging populations, and counties where supply constraints are more closely tied to rurality, weak labor markets, and limited training infrastructure. This distinction matters for our guidance on policy because expanding training capacity, improving retention, and targeting underserved counties are not interchangeable solutions.
+
+% -----------------------------------------------
+\section{Literature Review}\label{sec:litreview}
+% -----------------------------------------------
+
+The geographic concentration of healthcare workforce shortages is well established in the literature, yet most national analyses aggregate at a level that obscures the within-state variation most relevant for policy. Understanding how shortages are distributed geographically and why standard policy levers operate unevenly across that geography motivates the empirical approach taken here, where local training output predicts LPN supply but not RN supply, and capacity and shortage-designation variables play only a conditioning role.
+
+\subsection{Geographic Distribution of Shortages}
+
+\citet{streeter2020} offers a comprehensive county-level account of this maldistribution, finding that 96\% of U.S. counties were either designated primary care Healthcare Professional Shortage Areas (pcHPSA) or carried at least one social disadvantage marker in 2017. Shortage status, they demonstrate, does not arise independently of structural disadvantage. The most common co-occurring markers across pcHPSA counties were rurality, low educational attainment, low income, poverty, and small population size, indicating that provider shortages cluster systematically in counties already disadvantaged along multiple dimensions. Within Health and Human Services (HHS) Region 5, which includes Michigan, poverty and an older population were the dominant sources of county-level variability, and only 4.2\% of Region 5 counties exhibited more than six co-occurring disadvantage markers, a markedly lower share than Region 4 (39\%) or Region 6 (36\%). Michigan thus occupies a moderate position in the national distribution. Critically, however, \citet{streeter2020} explicitly acknowledge that their cross-sectional, national design cannot capture sub-state variation and call for replication at finer geographic levels, a gap this analysis aims to address.
+
+Nursing-specific evidence reinforces this picture while sharpening the geographic focus. \citet{stratton1995redefining}, drawing on county-level data from the Area Health Resource File (AHRF), find that 92.4\% of federally designated nurse-shortage counties in 1990 were nonmetropolitan, with the largest concentration in rural counties not adjacent to any metropolitan area. This suggests that shortages reflect structural regional maldistribution as much as aggregate supply-demand imbalances. The economic and demographic disparities between rural and urban places, they argue, are mirrored in shortage and non-shortage counties alike. Michigan's 2025 Healthcare Workforce Index underscores the severity of these pressures. 35.5\% of Michigan RNs reported plans to leave the profession within a year, and burnout rates reached 47.4\% in Northern Michigan. Yet the statewide projected shortage remains modest at approximately 3\% for RNs and 4\% for LPNs, figures that likely mask more severe county-level imbalances given the geographic concentration documented above.
+
+Market forces do not appear to naturally correct this maldistribution. \citet{bowser2025} find no statistically significant relationship between RN or nurse practitioner growth and degree of medical underservice across metropolitan statistical areas after controlling for income, employment, race, population size, and lagged wages. Growth instead tracked higher household income and stronger local labor markets, indicating that supply is being actively directed away from the highest-need areas. Because their analysis excludes nonmetropolitan settings, where the bulk of federally designated nurse-shortage counties are concentrated, this null result likely understates the true degree of geographic maldistribution.
+
+\subsection{Labor Supply and Wage Responsiveness}
+
+A second strand of literature asks why persistent vacancies continue despite decades of wage growth. Labor supply is characterized by modest responsiveness to wages at the market level \citep{askildsen2003} and near-inelastic responsiveness at the level of individual employers \citep{staiger2010}. Early estimates focused on hours worked among currently employed nurses, with wage elasticities clustered around 0.2, suggesting that moderate wage increases produce only modest supply responses. \citet{hanel2014} show that this framing understates the inelasticity problem by ignoring the extensive margin. Once the decision to enter or exit nursing from other occupations is incorporated, the unconditional wage elasticity of hours in nursing rises substantially, far above the intensive-margin estimate. The policy implication is direct. Wage increases are more effective at drawing nursing qualification holders back into the profession than at extracting additional hours from the existing workforce, a distinction that matters considerably for Michigan given its aging RN cohort.
+
+At the firm level, even market-level elasticities overstate responsiveness. \citet{staiger2010} exploit the Nurse Pay Act of 1990 as a natural experiment and find short-run firm-level supply elasticities of 0 to 0.2, consistent with substantial monopsony power, a friction likely more severe in rural Michigan counties where a single hospital system may be the dominant employer. \citet{konetzka2018} add that RN and LPN supply respond asymmetrically to labor market conditions, with RN staffing falling and LPN staffing rising during recessions, a pattern that complicates policy design given that the two nurse types are not perfect substitutes. This asymmetry foreshadows a central result of this paper and suggests that the two credentials should not be expected to respond identically to either labor-market shocks or training-capacity policy. Taken together, this strand of the literature points toward two conclusions that shape the empirical approach below. Wage-based interventions have limited aggregate reach, and the degree of supply inelasticity varies across space in a predictable way, with rural counties facing structurally worse conditions due to monopsonistic labor market structure.
+
+\subsection{Measuring Demand}
+
+A third strand of literature addresses the difficulty of measuring demand, since observed healthcare utilization is not equivalent to underlying healthcare demand. Utilization reflects not only medical need, but also whether care is available, affordable, geographically accessible, and acceptable to patients. \citet{andersen1995} provides the canonical framework for this distinction, decomposing healthcare use into predisposing characteristics, enabling factors, and need factors. For county-level nurse demand, this implies that demographic measures may better capture structural need than realized utilization alone.
+
+This distinction is especially important in rural and underserved areas, where low utilization may reflect constrained access rather than low need. \citet{reilly2021} emphasizes that rural healthcare access is shaped by availability, affordability, acceptability, accessibility, provider shortages, insurance coverage, poverty, and education. \citet{nuako2022} find that patients using rural clinics had worse measured health status than patients using urban clinics, yet had lower outpatient utilization after adjusting for demographic and health characteristics, consistent with this concern. Utilization-based demand measures may therefore understate need precisely in the counties most likely to face access barriers.
+
+The opposite concern arises in provider-rich areas, where the supplier-induced demand literature argues that healthcare providers may influence utilization because patients rely on clinical expertise and face information asymmetries \citep{evans1974}. Empirical support for this behavior is limited, however. \citet{grytten2001} find that neither salaried nor contract physicians in Norway increased output in response to greater physician density. Taken together, this strand of the literature suggests that realized utilization is a noisy proxy for RN and LPN demand. In underserved counties, utilization may be too low because care is difficult to obtain; in provider-rich counties, utilization may partly reflect supply-side conditions. To partially alleviate this issue, our analysis measures nursing demand primarily through demographic and structural indicators, including age structure, poverty, and long-term-care capacity.
+
+\subsection{Workforce Forecasting}
+
+A final strand of literature reinforces this paper's central pattern, that aggregate workforce projections can appear manageable while masking severe geographic mismatch. State-level forecasting work has found that the number of states facing severe RN shortages was projected to rise sharply over the coming decades, with demographic aging identified as a primary driver of projected demand \citep{juraschek2012,zhang2018}. More recent cohort-based projections refine the supply side of this problem, distinguishing entry patterns across birth cohorts from retirement-related exits, and project that aggregate recovery in the national RN workforce will be driven primarily by RNs aged 35 to 49 \citep{auerbach2024}. The implication is that aggregate recovery in the national RN workforce does not necessarily resolve local shortages, since a growing national workforce may still fail to reach counties where aging and weak labor-market conditions produce the greatest need.
+
+The HRSA's simulation-based projections make this distributional concern explicit. Non-metro areas are projected to face RN shortages of 24 percent in 2028, 18 percent in 2033, and 11 percent in 2038, compared with 5, 4, and 2 percent respectively in metro areas over the same intervals \citep{hrsa2025}. Michigan is especially exposed to this pattern, with the HRSA projecting an 18 percent RN shortage in the state by 2038, ranking fourth nationally. Thus, the forecasting literature points to the same conclusion as the geographic and labor-supply literatures reviewed above. The relevant policy problem is not simply whether the nursing workforce is large enough in aggregate, but whether supply is located in the counties where demographic demand and structural disadvantage are rising fastest.
+
+% -----------------------------------------------
+\section{Conceptual Model}\label{sec:conceptual}
+% -----------------------------------------------
+
+We conceptualize county-level RN and LPN supply as the outcome of a local healthcare labor market in which nursing need, worker location decisions, employer capacity, and training infrastructure vary systematically across space. The central claim is that Michigan's nursing workforce problem is not only an aggregate shortage, but a geographic mismatch: counties with high structural need for nursing care are not always the counties best positioned to attract, retain, or train nurses.
+
+The geographic distribution of RN and LPN supply across Michigan counties illustrates this mismatch directly. Supply is visibly concentrated in southeast Michigan and along the western lakeshore, while large stretches of the Upper Peninsula and the northern Lower Peninsula fall into the lowest quintiles for both occupations. This spatial pattern is consistent with the national maldistribution evidence reviewed above, but it is visible here at the county scale most relevant for state policy.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{heatmap_rn_lpn_per_100k_2023.png}
+    \caption{County-level supply of registered nurses and licensed practical nurses across Michigan, 2023, shown as population-scaled quintiles. Darker shading indicates counties in higher quintiles of nurse supply; lighter shading indicates lower relative supply. Source: LARA licensure records.}
+    \label{fig:heatmap_per_100k}
+\end{figure}
+
+On the demand side, nursing need rises with population aging and long-term-care dependence. Following \citet{andersen1995}, we distinguish underlying need from realized utilization. This distinction is important because utilization may be low in rural or underserved counties not because need is low, but because care is unavailable, geographically distant, unaffordable, or otherwise difficult to access \citep{reilly2021}. We therefore emphasize demographic and structural indicators of need, especially the shares of the population aged 75 and over and aged 65 to 74, rather than using utilization alone as a measure of demand.
+
+On the supply side, nurses sort across counties in response to wages, employment opportunities, amenities, and career ladders. These factors tend to favor larger urban and regional healthcare markets. Rural and economically distressed counties may therefore face a dual disadvantage: they often have older and more care-intensive populations, while also offering thinner labor markets and fewer professional opportunities. Employer concentration may further weaken wage competition in rural healthcare labor markets, limiting the ability of local wage adjustments to correct shortages \citep{staiger2010}. In this framework, nurse supply need not rise automatically in the counties where need is greatest.
+
+Training capacity provides a second supply-side channel. Local nursing programs may increase local nurse supply if graduates remain near the county where they train. This mechanism should be stronger for LPNs than for RNs. LPN programs are shorter, more locally oriented, and often tied to community-college labor markets, so LPN graduates may be more likely to remain near the training county. RN credentials are more portable and connected to broader hospital and regional labor markets, so local RN program output may translate less directly into county-level RN supply. This distinction motivates estimating RN and LPN models separately rather than treating nurses as a single workforce.
+
+The model implies three empirical expectations. First, counties with greater aging-related demand may experience greater shortage pressure if supply does not adjust proportionally to need. Second, counties with greater socioeconomic disadvantage may have lower nurse supply because disadvantage can raise demand while weakening recruitment and retention conditions. Third, lagged local training output should be more strongly associated with subsequent LPN supply than RN supply. The empirical analysis tests these implications using county and year fixed effects, while treating healthcare capacity, HPSA status, and wages cautiously because they are likely co-determined with nurse supply.
+
+\FloatBarrier
+% -----------------------------------------------
+\section{Data}\label{sec:data}
+% -----------------------------------------------
+
+The analysis is built on a county-year panel covering all 83 Michigan counties over the period 2012 to 2023, excluding 2018 due to a gap in nursing licensure data availability, yielding up to 913 county-year observations. All outcome variables are rate-normalized to county population, and the primary outcomes are registered nurses (RNs) and licensed practical nurses (LPNs) per 10{,}000 residents. Summary statistics are reported in Table~\ref{tab:summary_stats}.
+
+The primary source for nurse supply is the Michigan Department of Licensing and Regulatory Affairs (LARA), which maintains the statewide registry of active RN and LPN licenses, recorded at the nurse's county of residence rather than place of work. These data are supplemented with employer-reported occupational employment estimates from the U.S. Bureau of Labor Statistics Occupational Employment and Wage Statistics (BLS OEWS) program, which measure filled positions rather than active licenses and are used separately rather than combined. Population structure and socioeconomic context, including the share of the population aged 75 and over, the poverty rate, and educational attainment, are drawn from American Community Survey (ACS) five-year estimates, which are preferred over one-year estimates because the majority of Michigan's 83 counties fall below the population threshold for reliable one-year small-area figures. Hospital and nursing-home bed capacity are constructed from the CMS Healthcare Cost Report Information System and the CMS Nursing Home Provider Information file, while Health Professional Shortage Area designations and additional facility counts are drawn from the HRSA Area Health Resources File.
+
+The supply-side training pipeline is measured using degree and certificate completions data from the National Center for Education Statistics Integrated Postsecondary Education Data System (IPEDS) Completions Survey, aggregated to the county of the awarding institution and expressed as completions per 10{,}000 county residents, entered with a one-year lag since institutional output in year $t$ enters the licensed workforce only in subsequent years. Rural classification follows the USDA Rural-Urban Continuum Codes, and county-to-metropolitan-area linkages follow OMB Core-Based Statistical Area delineation files. All sources are merged on county FIPS code and year. A 2021 cross-section from the Michigan Public Health Institute nurse licensure survey provides additional licensure counts for that year, merged as a supplementary column rather than replacing the LARA time series.
+
+Two features of this construction recur in the discussion of limitations below. Licensure is recorded at the nurse's county of residence rather than place of work, which introduces measurement error in regional labor markets such as southeast Michigan that county fixed effects cannot fully absorb. Several regressors, including the IPEDS pipeline variable, share a common population denominator with the outcome variables, so that intercensal population revisions in small rural counties can propagate as correlated measurement error.
+
+\begin{table}[!htbp]
+\centering
+\caption{Summary Statistics}
+\label{tab:summary_stats}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Variable & N & Mean & SD & Min & Median & Max \\
+\midrule
+RN per 10{,}000 residents      & 913  & 123.8 & 32.4 & 40.1  & 120.9 & 229.9 \\
+LPN per 10{,}000 residents     & 911  & 30.7  & 16.4 & 7.03  & 26.8  & 101.5 \\
+RN postings per 10{,}000       & 1160 & 24.5  & 22.6 & 0.00  & 18.0  & 147.0 \\
+LPN postings per 10{,}000      & 1160 & 4.76  & 5.37 & 0.00  & 3.41  & 59.3  \\
+Share aged 75$+$ (pp)          & 1162 & 8.40  & 2.24 & 4.40  & 7.78  & 16.4  \\
+Share aged 65--74 (pp)         & 1162 & 11.5  & 3.33 & 4.96  & 10.9  & 22.1  \\
+Population growth rate         & 1079 & 0.00  & 0.01 & $-0.12$ & 0.00 & 0.16  \\
+Hospital beds per 1{,}000      & 1162 & 2.14  & 2.00 & 0.00  & 1.65  & 11.8  \\
+NH beds per 1{,}000 (65$+$)    & 1162 & 0.02  & 0.15 & 0.00  & 0.00  & 2.48  \\
+Poverty rate (pp)              & 1162 & 15.2  & 4.15 & 4.86  & 15.2  & 32.1  \\
+Bachelor's$+$ share (pp)       & 996  & 21.8  & 8.78 & 8.22  & 19.3  & 58.1  \\
+IPEDS RN grads/10k ($t-1$)     & 1079 & 4.55  & 8.32 & 0.00  & 0.00  & 62.0  \\
+IPEDS LPN grads/10k ($t-1$)    & 1079 & 1.62  & 5.16 & 0.00  & 0.00  & 64.9  \\
+\bottomrule
+\end{tabular}
+{\par\medskip\footnotesize\textit{Notes:} County-year observations, 2012--2023 (excluding 2018). Outcomes are residence-based LARA licensure counts per 10{,}000 residents. Share and rate variables are in percentage points (pp). IPEDS completions are lagged one year. The outcome variables vary far more across counties than within counties over time, which motivates the within-county identification strategy and the between-county comparisons reported below.}
+\end{table}
+
+\FloatBarrier
+
+% -----------------------------------------------
+\section{Empirical Framework}\label{sec:empirical}
+% -----------------------------------------------
+
+The empirical strategy estimates the conditional within-county
+  relationship between county nurse supply and the structural demand,
+  pipeline, capacity, and disadvantage measures identified in the
+  conceptual model. The core estimating equation is
+
+  \begin{equation}
+      Y_{it} \;=\; \alpha_i + \lambda_t
+      + \beta_{1} D_{it} + \beta_{2} P_{i,t-1}
+      + \beta_{3} K_{it}  + \beta_{4} X_{it}
+      + \varepsilon_{it},
+      \label{eq:main}
+  \end{equation}
+
+  where $Y_{it}$ is the number of registered nurses (RNs) or licensed
+  practical nurses (LPNs) per 10{,}000 residents in county $i$ in year
+  $t$, measured from Michigan Department of Licensing and Regulatory
+  Affairs (LARA) residence-based licensure files. The county fixed effect
+  $\alpha_i$ absorbs time-invariant unobserved county heterogeneity,
+  including geographic remoteness, persistent settlement patterns, and
+  historical institutional infrastructure. The year fixed effect
+  $\lambda_t$ absorbs Michigan-wide shocks common to all 83 counties,
+  including state policy changes, COVID-19 disruption to clinical
+  placements, and federal scholarship cycles. Standard errors are
+  clustered at the county level.
+
+  $D_{it}$ contains structural demand shifters: the share of the
+  population aged 75 and over, the share aged 65 to 74, and the
+  population growth rate. The aging shares are entered separately because
+  the oldest-old cohort is most directly tied to long-term-care and
+  inpatient nursing demand, whereas the younger-elderly cohort is more
+  commonly served in lower-intensity ambulatory settings. Following
+  \citet{andersen1995} and motivated by the access-barrier critique of
+  utilization-based demand proxies in \citet{reilly2021}, we use stock
+  measures of population need rather than realized utilization.
+
+  $P_{i,t-1}$ is the local nurse-training pipeline, measured as IPEDS
+  completions in the relevant occupation per 10{,}000 county residents,
+  lagged one year. The one-year lag places training output before the
+  current-year outcome and addresses the most mechanical form of
+  simultaneity. We also report specifications with alternative lags and a
+  log-count outcome to assess whether the result is sensitive to timing or
+  to the shared population denominator in the rate variables.
+
+  $K_{it}$ is a vector of healthcare-capacity conditioning variables:
+  hospital beds per 1{,}000 residents, nursing-home beds per 1{,}000
+  residents aged 65 and over, and the count of Health Professional
+  Shortage Area primary-care designations in the county where used. These
+  variables are likely co-determined with the nurse workforce and are
+  therefore included as conditioning information rather than interpreted as
+  causal drivers. $X_{it}$ contains structural disadvantage controls,
+  including county poverty and the share of adults aged 25 and over with a
+  bachelor's degree or higher.
+
+  Because the right-hand-side variables differ in their exposure to
+  endogeneity, we organize the interpretation around a credibility ladder.
+  Coefficients on the aging shares and on lagged training output are the
+  most interpretable because they are predetermined relative to current
+  licensure counts. Coefficients on poverty and educational attainment are
+  interpreted as conditional associations, since these variables are
+  slow-moving but not exogenous to local labor-market conditions.
+  Coefficients on capacity and HPSA designation are interpreted only as
+  conditioning information because capacity is co-determined with workforce
+  supply and HPSA status is mechanically related to shortage conditions.
+  The Magnet-hospital indicator is excluded from all reported
+  specifications as a bad control, since Magnet status plausibly reflects
+  prior workforce strength rather than driving current supply.
+
+  The two-way fixed-effects specification is preferred over a purely
+  cross-sectional approach because it absorbs time-invariant differences
+  across counties and focuses identification on within-county changes. This
+  design is better aligned with the policy question of whether changes in a
+  county's demographics, training pipeline, or capacity are associated with
+  changes in nurse supply. However, many county characteristics vary much
+  more across counties than within counties. To show these cross-sectional
+  gradients without treating them as causal, we also report pooled OLS
+  specifications on the same sample. These pooled estimates are descriptive
+  between-county benchmarks and remain subject to the omitted-variable bias
+  that motivates the fixed-effects design.
+
+  Wage specifications and a shift-share wage instrument were explored but
+  are not included as main identified results. Because wages and nurse
+  supply are jointly determined in local labor markets, ordinary least
+  squares wage coefficients are confounded. The attempted shift-share
+  instrument was weak in the Michigan-only sample, so the wage channel is
+  discussed in the limitations rather than treated as an identified
+  mechanism.
+
+% -----------------------------------------------
+\section{Results}\label{sec:results}
+% -----------------------------------------------
+
+The results are organized around three questions. First, do the baseline
+models reveal meaningful geographic gradients in nurse supply? Second, does
+local training output predict subsequent local nurse supply? Third, do job
+postings provide a useful, if limited, signal for targeting shortage
+pressure? All preferred specifications use the 83-county Michigan panel for
+2012 to 2023, excluding 2018, with county and year fixed effects and
+standard errors clustered at the county level.
+
+\subsection{Baseline Geographic Gradients}
+
+Table~\ref{tab:baseline} reports the preferred baseline two-way
+fixed-effects specification. Within counties, increases in the 75-and-over
+share are positively associated with RN supply ($\hat{\beta}=5.77$,
+$p=0.002$), while the corresponding LPN coefficient is positive but
+imprecise. The share aged 65 to 74 is not statistically significant for RNs
+and is only marginally negative for LPNs. These patterns suggest that the
+within-county aging relationship is not a simple shortage measure: older
+counties may also be counties where healthcare infrastructure and nurse
+residence are expanding. The bachelor's-degree share is positively
+associated with LPN supply and positive but imprecise for RN supply,
+consistent with a broader local labor-pool interpretation. Poverty is not
+significant within county.
+
+Capacity variables are included as conditioning controls rather than causal
+regressors. Their coefficients should be interpreted cautiously because bed
+capacity and nurse supply are jointly determined. In the LPN model,
+hospital and nursing-home bed capacity enter negatively and significantly,
+which is more consistent with simultaneity or adjustment dynamics than with
+a clean causal effect of capacity on supply.
+
+\begin{table}[!htbp]
+\centering
+\caption{Baseline distribution models (two-way fixed effects)}
+\label{tab:baseline}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $5.77^{**}$ & (1.83) & $1.02$ & (1.30) \\
+Share aged 65--74 (pp) & $-1.18$ & (2.06) & $-1.88^{\dagger}$ & (0.97) \\
+Population growth rate & $-7.81$ & (38.47) & $-49.13^{***}$ & (13.55) \\
+Hospital beds per 1{,}000 & $-1.09$ & (0.84) & $-2.54^{***}$ & (0.44) \\
+NH beds per 1{,}000 (65$+$) & $0.45$ & (1.04) & $-3.47^{***}$ & (0.52) \\
+Poverty rate (pp) & $0.69$ & (0.49) & $0.07$ & (0.26) \\
+Bachelor's$+$ share (pp) & $0.89$ & (0.67) & $0.79^{*}$ & (0.32) \\
+IPEDS RN grads/10k ($t-1$) & $0.024$ & (0.119) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.416^{***}$ & (0.055) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 83 & & 83 & \\
+Observations & 913 & & 911 & \\
+Within $R^{2}$ & 0.088 & & 0.164 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Because several demographic and socioeconomic measures vary more across
+counties than within counties, Table~\ref{tab:pooled} compares the TWFE
+estimates with pooled between-county OLS benchmarks. The pooled estimates
+recover stronger cross-sectional gradients, especially for LPN supply in
+older counties and RN supply in more educated counties. These pooled results
+are useful descriptively, but they are not treated as more credible than the
+TWFE estimates because they reintroduce cross-sectional omitted-variable
+bias. The sign reversal of several capacity coefficients across the within
+and between estimators reinforces that capacity is co-determined with local
+healthcare markets rather than separately identified as a causal channel.
+
+\begin{table}[!htbp]
+\centering
+\caption{Within-county (TWFE) vs.\ between-county (pooled OLS) baseline estimates}
+\label{tab:pooled}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN per 10{,}000} & \multicolumn{2}{c}{LPN per 10{,}000} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & TWFE & Pooled & TWFE & Pooled \\
+\midrule
+Share aged 75$+$ (pp) & $5.77^{**}$ & $4.06^{*}$ & $1.02$ & $7.14^{***}$ \\
+Share aged 65--74 (pp) & $-1.18$ & $-2.12$ & $-1.88^{\dagger}$ & $-4.48^{***}$ \\
+Hospital beds per 1{,}000 & $-1.09$ & $3.18^{*}$ & $-2.54^{***}$ & $0.93^{\dagger}$ \\
+NH beds per 1{,}000 (65$+$) & $0.45$ & $-5.82$ & $-3.47^{***}$ & $8.24^{***}$ \\
+Poverty rate (pp) & $0.69$ & $-2.23^{***}$ & $0.07$ & $-0.12$ \\
+Bachelor's$+$ share (pp) & $0.89$ & $2.30^{***}$ & $0.79^{*}$ & $-0.46^{*}$ \\
+IPEDS RN grads/10k ($t-1$) & $0.024$ & $0.239$ & --- & --- \\
+IPEDS LPN grads/10k ($t-1$) & --- & --- & $0.416^{***}$ & $0.665^{***}$ \\
+\midrule
+County \& year FE & Yes & No & Yes & No \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} Pooled columns add a constant and recover between-county variation; they are descriptive benchmarks subject to cross-sectional omitted-variable bias, not more credible than the TWFE estimates.
+\end{table}
+
+\subsection{Training Pipeline}
+
+The strongest evidence concerns the LPN training pipeline. In the preferred
+TWFE specification, one additional lagged LPN completion per 10{,}000
+residents is associated with 0.416 additional LPNs per 10{,}000 residents
+in the following year ($SE=0.055$). The estimate is highly significant
+using clustered asymptotic inference but more marginal under the
+wild-cluster bootstrap ($p=0.057$). We therefore interpret the result as a
+robust but not definitive local-retention signal.
+
+The corresponding RN pipeline coefficient is near zero across
+specifications. This RN--LPN asymmetry is consistent with greater geographic
+mobility among RN graduates and with the limits of residence-based county
+licensure data for measuring RN local retention. It also suggests that LPN
+and RN shortages should not be treated as identical policy problems:
+county-level training capacity appears more directly connected to LPN
+supply than to RN supply.
+
+\begin{table}[!htbp]
+\centering
+\caption{Training-pipeline coefficient across specifications}
+\label{tab:training}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{IPEDS LPN/10k ($t-1$)} & \multicolumn{2}{c}{IPEDS RN/10k ($t-1$)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Specification & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Baseline (no lagged DV) & $0.416^{***}$ & (0.055) & $0.024$ & (0.119) \\
+Training spec (lagged DV) & $0.264^{***}$ & (0.079) & $0.009$ & (0.040) \\
+Two-year lag (baseline) & $0.259^{**}$ & (0.090) & --- &  \\
+Log-count (common denom.) & $0.033^{**}$ & (0.012) & --- &  \\
+\quad Wild-cluster bootstrap $p$ & \multicolumn{2}{c}{$0.057$} & \multicolumn{2}{c}{---} \\
+\midrule
+\multicolumn{5}{l}{\textit{Urbanicity (LPN pipeline)}} \\
+\quad MSA only (51) & $0.457^{**}$ & (0.167) & & \\
+\quad Rural only (32)$^{a}$ & $0.181^{\dagger}$ & (0.095) & & \\
+\quad Rural $\times$ pipeline & $-0.124$ & (0.120) & & \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} County and year FE, county-clustered SEs. Baseline uses the Table~\ref{tab:baseline} controls; the training spec adds a lagged dependent variable, lagged entry-age share, and unemployment. Log-count uses $\log(1+\text{LPN count})$ with $\log(\text{pop})$ offset (a log--log elasticity). $^{a}$ identified off a single rural program county. $^{\dagger}p<.10$, $^{*}p<.05$, $^{**}p<.01$, $^{***}p<.001$.
+\end{table}
+
+A leads-and-lags specification provides additional support for the pipeline
+interpretation. The one- and two-year leads of LPN completions are small and
+statistically insignificant, while the lagged coefficients are positive and
+significant. This pattern is inconsistent with obvious pre-trends, although
+it does not fully rule out anticipatory program expansion or other local
+shocks that affect both completions and supply.
+
+\begin{table}[!htbp]
+\centering
+\caption{Leads-and-lags (pre-trends) test, LPN pipeline}
+\label{tab:pretrends}
+\small
+\begin{tabular}{lcc}
+\toprule
+Term & Coef. & (SE) \\
+\midrule
+IPEDS LPN ($t+2$) & $0.158$ & (0.122) \\
+IPEDS LPN ($t+1$) & $-0.043$ & (0.106) \\
+IPEDS LPN ($t-1$) & $0.204^{**}$ & (0.079) \\
+IPEDS LPN ($t-2$) & $0.141^{*}$ & (0.068) \\
+\bottomrule
+\end{tabular}
+\par\medskip\footnotesize\textit{Notes:} Two-way FE, county-clustered SEs. Insignificant leads ($t+1$, $t+2$) indicate no pre-trends; significant lags support a forward-looking pipeline. $^{*}p<.05$, $^{**}p<.01$.
+\end{table}
+
+\subsection{Vacancy Pressure}
+
+The vacancy-pressure models are diagnostic rather than causal. Job postings
+measure observable recruitment activity, not unmet need, and they likely
+understate shortages among smaller rural employers that recruit informally.
+The models also explain little within-county variation. For RN postings,
+higher poverty and nursing-home bed density are associated with more
+postings, while lagged RN supply is negative but imprecise. No predictor is
+statistically significant for LPN postings. We therefore use postings only
+as a supplemental targeting signal, not as evidence for a separate
+mechanism.
+
+\begin{table}[!htbp]
+\centering
+\caption{Vacancy-pressure models (postings per 10{,}000, TWFE)}
+\label{tab:vacancy}
+\small
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{2}{c}{RN postings} & \multicolumn{2}{c}{LPN postings} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Variable & Coef. & (SE) & Coef. & (SE) \\
+\midrule
+Share aged 75$+$ (pp) & $-5.35^{*}$ & (2.64) & $-1.02$ & (0.83) \\
+Share aged 65--74 (pp) & $-2.02$ & (2.51) & $-0.70$ & (0.64) \\
+Population growth rate & $52.47$ & (149.33) & $-3.20$ & (22.89) \\
+HPSA (primary care) & $-9.94$ & (9.94) & $0.75$ & (1.36) \\
+Hospital beds per 1{,}000 & $1.61$ & (1.10) & $0.10$ & (0.21) \\
+NH beds per 1{,}000 (65$+$) & $4.49^{***}$ & (1.24) & $-0.51$ & (0.34) \\
+Poverty rate (pp) & $1.54^{*}$ & (0.68) & $0.25$ & (0.26) \\
+Bachelor's$+$ share (pp) & $0.83$ & (0.55) & $0.26$ & (0.23) \\
+RN supply ($t-1$) & $-0.10$ & (0.08) & --- &  \\
+LPN supply ($t-1$) & --- &  & $-0.03$ & (0.06) \\
+IPEDS RN grads/10k ($t-1$) & $-0.021$ & (0.105) & --- &  \\
+IPEDS LPN grads/10k ($t-1$) & --- &  & $0.022$ & (0.068) \\
+\midrule
+County \& year FE & Yes & & Yes & \\
+Clusters (county) & 83 & & 83 & \\
+Observations & 828 & & 826 & \\
+Within $R^{2}$ & 0.043 & & 0.016 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Interpretation}\label{sec:headline}
+
+The main result is the asymmetry between local LPN and RN training output.
+Lagged LPN completions are positively associated with subsequent local LPN
+supply across several specifications, while the analogous RN coefficients
+are consistently near zero. This pattern suggests that local LPN programs
+may have a more direct connection to county-level workforce supply than RN
+programs, whose graduates appear more geographically mobile or less visible
+in residence-based county licensure data. The evidence is strongest for a
+local LPN pipeline channel, more descriptive for cross-county demographic
+and education gradients, and weakest for vacancy-pressure and wage-based
+mechanisms.
+
+
+% -----------------------------------------------
+\section{Limitations}\label{sec:limits}
+% -----------------------------------------------
+
+Several limitations qualify the framework, spanning measurement,
+identification, statistical inference, and the set of mechanisms that this
+design can and cannot separate.
+
+\subsection{Measurement and Data Quality}
+
+The LARA licensure outcome measures nurses where they \emph{reside}, not
+where they \emph{work}. Nurses who live in one county and commute to a
+hospital in another are assigned to the residence county. Because nurse
+labor markets are regional, particularly in southeast Michigan, this
+introduces measurement error that does not average out across counties and
+that the county fixed effects cannot absorb. Workplace-based supply, the
+policy-relevant concept for staffing, is not directly identified by
+Equation~\eqref{eq:main}, and this is our preferred interpretation of the
+RN training null. Relatedly, licensure counts include retired, inactive,
+and out-of-state-employed but Michigan-licensed nurses; without a
+full-time-equivalent adjustment, the per-capita measure conflates
+participation and effective hours. A further concern is that both the
+outcome and the IPEDS pipeline regressor are normalized by county
+population, so intercensal population revisions, especially in small rural
+counties, propagate as correlated measurement error. The log-count
+specification with a $\log(\text{pop})$ offset (Table~\ref{tab:training})
+addresses this for the preferred LPN pipeline coefficient.
+
+\subsection{Identification}
+
+The lag-one IPEDS variable is predetermined but is not exogenous if
+colleges expand seats in anticipation of locally visible shortages, since
+a county-specific demand shock persisting from $t-2$ into $t$ would
+correlate with both prior-year completions and current outcomes. We test
+for this directly. The leads-and-lags specification shows no significant
+pre-trends (Table~\ref{tab:pretrends}), and a reverse-Granger regression
+yields only a small, borderline coefficient on lagged supply ($-0.016$,
+$p = 0.024$). These tests weigh against, but do not decisively rule out,
+anticipatory expansion. The HPSA shortage-area indicator moves
+infrequently within counties and is partly endogenous to the outcome.
+Under treatment-effect heterogeneity, the TWFE coefficient on a
+slowly-changing binary regressor is a weighted average of pairwise
+difference-in-differences comparisons with potentially negative weights
+\citep{goodman2021difference, de2020two}, so we report it descriptively
+only. The Magnet-hospital indicator was excluded from all reported
+specifications as a bad control, since Magnet status plausibly reflects
+prior workforce strength rather than driving supply. Finally, county-level
+estimation assumes independence across counties (SUTVA), yet cross-county
+commuting and training flows violate this assumption. Clustering at the
+county level corrects the variance but not the bias from spillovers, and a
+commuting-zone analysis would help bound this.
+
+\subsection{Inference and Power}
+
+The panel contains 83 counties. Cluster-robust standard errors are
+asymptotically valid as the number of clusters grows; with $N_g = 83$,
+finite-sample bias is plausible, so we report the wild-cluster bootstrap of
+\citet{cameron2008bootstrap} for the headline coefficient. Within-county
+$R^2$ values are modest (0.088 in the preferred RN specification and 0.164
+in the LPN specification), reflecting that the bulk of within-county
+variation in licensure density is not captured by the regressors; the
+pooled between-county estimates (Table~\ref{tab:pooled}) partly address
+this by recovering the cross-sectional gradients the within design cannot
+detect. The IPEDS pipeline is identified off the minority of counties that
+host nursing programs, roughly 18 with an LPN program and 37 with an RN
+program of 83, so the estimated effect applies to the program-county
+subsample and does not directly support projections for program-free
+counties. The Michigan-only, 2012 to 2023 scope further limits external
+validity. The LPN training-to-supply coefficient is the single
+pre-specified focal hypothesis, while the remaining estimates are
+exploratory; we therefore do not apply an ad hoc multiplicity correction to
+the focal test, but caution that, given the number of specifications
+estimated, some borderline-significant exploratory results are expected by
+chance. Under the finite-cluster bootstrap the focal coefficient is itself
+only marginally significant ($p = 0.057$), which we report as the headline
+inference.
+
+\subsection{Mechanisms Not Separately Identified}
+
+Three of the five policy levers we examined did not yield an identified
+effect in this design, and we treat them as directions for future
+multi-state work rather than as findings. Workforce age-composition
+variables are available only for 2012 to 2017 and 2019 to 2020, excluding
+the 2021 pandemic-exit year, the period with the most structurally unusual
+retention dynamics. In the available window, no age-composition variable is
+significant for RN supply, and only the lagged LPN under-35 entry share is
+marginally positive ($\hat{\beta} = 0.096$, $p = 0.039$). Burnout,
+intent-to-leave, and part-time margins are not measured at the county-year
+level, and a supplementary part-time-share test was not estimable given
+only three post-2018 years of coverage; county-level burnout or
+staffing-intensity data would be required to identify a retention channel.
+Hospital operating margins (CMS HCRIS, 73 counties) show negative but
+insignificant associations with supply ($\hat{\beta} = -0.38$ for RN and
+$-0.27$ for LPN), and neither survives outlier or thin-year diagnostics,
+since the coefficients flip sign when the two thinly covered panel years or
+14 extreme-margin pandemic-era observations are excluded; cleaner
+financial-health measures such as days cash on hand or bond ratings are
+needed.
+
+The wage channel is not identified in this design. OLS wage specifications
+are confounded because wages and nurse supply are jointly determined in
+local labor markets. We attempted a shift-share instrument of the form
+$Z_{it}=\sum_k s_{ik,2014} g^{\text{nat}}_{kt}$, interacting each
+county's initial industry composition with national industry wage growth.
+In the Michigan-only sample, however, the first-stage $F$ statistic is
+below 1 for both occupations. The design also requires share- or
+shock-orthogonality conditions \citep{borusyak2022quasi,goldsmith2020bartik}
+that are difficult to defend when local industry structure may affect
+healthcare labor demand through channels other than nursing wages. We
+therefore treat the wage channel as unidentified rather than weakly
+identified. A nurse-practitioner substitution interaction is
+statistically present ($\hat{\beta} = -0.015$, $p = 0.004$) but, because NP
+density is co-determined with the local health system, is a conditional
+association rather than a substitution elasticity. A multi-state panel with
+stronger identifying variation is the natural path to recovering these
+channels.
+
+
+\section{Conclusion}\label{sec:conclusion}
+
+This paper set out to determine whether Michigan's nursing workforce
+problem is better understood as an aggregate shortage or as a geographic
+mismatch, and the evidence is more consistent with the latter. Across the mechanisms
+we examined, the clearest and most policy-relevant signal is the asymmetry
+between the RN and LPN training pipelines. Local LPN program output is
+positively associated with subsequent within-county LPN supply, with a
+magnitude consistent with meaningful local retention. This result is stable
+across a lagged dependent variable, a two-year lag, a log-count
+specification, and a between-county pooled benchmark, but it is only
+marginal under the finite-cluster wild-cluster bootstrap ($p = 0.057$). The analogous RN coefficient is null everywhere it is tested,
+consistent with a more geographically mobile RN workforce that
+residence-based licensure cannot tie back to county of training. The
+between-county estimates corroborate the aging-demand and education
+gradients that the within-county design is underpowered to detect, while
+the sign reversal of the capacity coefficients across the within and
+between estimators reinforces that bed capacity is co-determined with supply
+rather than causal.
+
+This asymmetry implies that LPN and RN shortages call for different
+instruments at different geographic scales. Expanding community-college LPN
+capacity in shortage counties is therefore a plausible local lever, whereas
+RN shortages are unlikely to be resolved by county-level training expansion
+alone and may require training and retention policy coordinated at the
+regional or state level. The vacancy-pressure models,
+while not identifying a causal channel, remain useful as a targeting tool
+for counties where loan-repayment or placement programs are likely to have
+the greatest near-term impact. The retention, employer-capacity, and wage
+mechanisms were not separately identified in this design, owing to
+incomplete age-composition coverage, pandemic-distorted hospital
+accounting, and a weak Michigan-only wage instrument, and they are the
+priorities for a multi-state extension. More broadly, the modest
+within-county $R^2$ values across all specifications are themselves
+informative, since the bulk of the geographic variation in Michigan's nurse
+supply is cross-sectional rather than dynamic, reflecting deep and
+slow-moving differences across counties rather than year-to-year
+fluctuations that policy can readily move. Closing Michigan's geographic
+mismatch in nursing care is therefore a long-horizon undertaking, and the
+local LPN training pipeline identified here is one of the few levers with a
+demonstrated within-county effect.
+
+
+% --- References ---
+\newpage
+\bibliographystyle{apalike}
+\bibliography{references}
+
+
+\end{document}
