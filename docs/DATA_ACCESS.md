@@ -35,10 +35,11 @@ you must obtain these yourself:
 
 ## Rebuilding the panels (advanced)
 
-The build scripts live in `src/` (for example `regressors_data_script.py`,
-`build_lightcast_panel.py`, `merge_lightcast_into_panel.py`,
-`recover_2018_rows.py`). They expect the raw inputs in `data/raw/` and a
-`CENSUS_API_KEY` in the environment. Because the Lightcast and Nurse Map inputs
-cannot be redistributed, `make data` does not run automatically for outside
-users; it prints these instructions instead. See the source comments in each
-script for exact input filenames.
+The published repository is scoped to reproducing the paper from the committed
+analytic panels, so the raw-data build scripts (for example
+`regressors_data_script.py`, `build_lightcast_panel.py`,
+`merge_lightcast_into_panel.py`, `recover_2018_rows.py`) are kept outside the
+published tree. They expect the raw inputs above plus a `CENSUS_API_KEY`, and
+because the Lightcast and Nurse Map inputs cannot be redistributed, the raw
+rebuild cannot run for outside users in any case. Contact the author if you
+need the full build chain.

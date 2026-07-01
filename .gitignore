@@ -28,3 +28,13 @@ paper/*.out
 paper/*.bbl
 paper/*.blg
 paper/*.toc
+
+# ---- Keep the repo lean: pipeline regenerates extras, but only paper-
+# ---- relevant artifacts are tracked. ----
+# Generated figures: only the one map used in the paper
+figures/*
+!figures/heatmap_rn_lpn_per_100k_2023.png
+# Generated model outputs: only the reproduced regression tables
+outputs/*
+!outputs/mechanism_model_results.csv
+!outputs/appendix_tables.tex

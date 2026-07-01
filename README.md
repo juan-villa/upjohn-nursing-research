@@ -31,15 +31,15 @@ Individual stages:
 
 | Target | What it does | Writes to |
 |---|---|---|
-| `make mechanism` | Runs the mechanism / policy-lever FE models | `outputs/*.csv` |
-| `make tables`    | Main (Tables 1 and 2) + appendix regression tables | `figures-submission/`, `outputs/`, `figures/tables/` |
-| `make figures`   | County heatmaps + supply-vs-aging scatter | `figures/` |
+| `make mechanism` | Runs the two-way fixed-effects models behind the paper's regression tables | `outputs/mechanism_model_results.csv` |
+| `make tables`    | Renders those results as the paper's regression tables | `outputs/appendix_tables.tex` |
+| `make figures`   | Renders the county nurse-supply map (the paper's figure) | `figures/heatmap_rn_lpn_per_100k_2023.png` |
 | `make paper`     | Compiles the LaTeX source to PDF | `paper/` |
 | `make check`     | Verifies inputs + Python deps are present | n/a |
 | `make clean`     | Removes regenerable caches | n/a |
 
 Requirements: Python 3.10+, the packages in [`requirements.txt`](requirements.txt),
-and (for `make tables`/`make paper`) a LaTeX install providing `pdflatex`.
+and (for `make paper`) a LaTeX install providing `pdflatex`.
 
 ---
 
@@ -48,17 +48,21 @@ and (for `make tables`/`make paper`) a LaTeX install providing `pdflatex`.
 ```
 data/
   analytic/   Derived, analysis-ready county panels (committed): the inputs to every result
-  shp/        US Census county cartographic boundaries (public domain), for maps
+  shp/        US Census county cartographic boundaries (public domain), for the map
   raw/        Licensed & intermediate source data (NOT committed; see docs/DATA_ACCESS.md)
-src/          Build scripts (raw -> panel) and result generators (tables, scatter)
-notebooks/    Analysis notebooks (mechanism models, causal models, heatmaps)
-outputs/      Generated model tables and result CSVs
-figures/      Generated maps, scatter plots, and rendered table images
-figures-submission/  Main-text regression tables (Table 1, Table 2)
+src/          make_appendix_tables.py: renders the model results into the paper's tables
+notebooks/    mechanism_models_policy_levers_v3 (FE models) and new-heatmaps (the map)
+outputs/      Model results and the rendered regression tables
+figures/      The county nurse-supply map used in the paper
 paper/        Final manuscript (LaTeX + bibliography + compiled PDF)
 docs/         Data dictionary, source documentation, modeling notes
 Makefile      Reproducibility pipeline
 ```
+
+The repository is scoped to what the final paper actually uses: its one map and
+the fixed-effects models behind its regression tables. Exploratory notebooks,
+alternate figures, and the raw-data build scripts were kept out of the published
+tree to keep the reproduction path clear.
 
 ## Data & reproducibility notes
 
@@ -67,9 +71,8 @@ Makefile      Reproducibility pipeline
   outputs. These are sufficient to reproduce the paper end-to-end.
 - **What's not committed:** the proprietary raw inputs: **Lightcast** job
   postings and the **Michigan Nurse Map** licensed nurse counts, which cannot
-  be redistributed. The build scripts that assemble the panels from these
-  sources live in `src/`; see [`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md) for
-  each source and how to obtain it.
+  be redistributed. See [`docs/DATA_ACCESS.md`](docs/DATA_ACCESS.md) for each
+  source, its license, and how to obtain it.
 - **Method:** two-way (county + year) fixed effects with county-clustered
   standard errors; training-pipeline regressors enter with lags to probe a
   forward-looking supply response. See [`docs/`](docs/) for the full data
