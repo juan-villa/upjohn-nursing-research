@@ -19,7 +19,7 @@ work, and which **policy levers** actually move county-level supply.
 ## Reproduce the results
 
 Every table and figure in the paper is regenerated from the committed analytic
-panels in [`data/analytic/`](data/analytic/): **no API keys or licensed raw
+panel in [`data/analytic/`](data/analytic/): **no API keys or licensed raw
 data required.**
 
 ```bash
@@ -47,11 +47,11 @@ and (for `make paper`) a LaTeX install providing `pdflatex`.
 
 ```
 data/
-  analytic/   Derived, analysis-ready county panels (committed): the inputs to every result
+  analytic/   Derived, analysis-ready county panel (committed): the input to every result
   shp/        US Census county cartographic boundaries (public domain), for the map
   raw/        Licensed & intermediate source data (NOT committed; see docs/DATA_ACCESS.md)
 src/          make_appendix_tables.py: renders the model results into the paper's tables
-notebooks/    mechanism_models_policy_levers_v3 (FE models) and new-heatmaps (the map)
+notebooks/    mechanism_models (FE models) and nurse_supply_maps (the map)
 outputs/      Model results and the rendered regression tables
 figures/      The county nurse-supply map used in the paper
 paper/        Final manuscript (LaTeX + bibliography + compiled PDF)
@@ -66,7 +66,7 @@ tree to keep the reproduction path clear.
 
 ## Data & reproducibility notes
 
-- **What's committed:** the *derived* analytic panels (aggregated to county ×
+- **What's committed:** the *derived* analytic panel (aggregated to county ×
   year), the public Census county shapefile, all code, and all generated
   outputs. These are sufficient to reproduce the paper end-to-end.
 - **What's not committed:** the proprietary raw inputs: **Lightcast** job

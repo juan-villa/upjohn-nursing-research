@@ -195,7 +195,8 @@ underlying source supports it.
 With the exception of the manually compiled LARA nursing licensure
 columns and two sources that block scripted downloads (CHR and AHRF,
 which require manual one-time file deposits in `data/cache/`), the
-entire 90-column regressor block can be reproduced end-to-end by
-running `python scripts/regressors_data_script.py`. The script caches
-all downloads locally for replication and is documented for
-non-technical users in `REGRESSORS_README.md`.
+entire 90-column regressor block was assembled from public sources by
+a build script that caches all downloads locally for replication.
+The build chain and its documentation are retained by the author; the
+published repository ships the resulting analytic panel (see
+`DATA_ACCESS.md`).

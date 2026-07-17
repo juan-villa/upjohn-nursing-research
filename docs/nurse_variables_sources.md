@@ -55,6 +55,6 @@ New 2023 values reproduce the master panel's prior constant `*_23` columns exact
 
 Built with `build_ahrf_nurse_panel.py` (parses AHRF technical-documentation xlsx for field
 byte-positions and years, slices fixed-width ASCII / melts CSV releases for Michigan).
-Output: `ahrf_mi_nurse_panel_full.csv` → merged into `claude_merge_recon_neigh_w_final_reg_v2.csv`.
+Output: `ahrf_mi_nurse_panel_full.csv` → merged into `michigan_nurse_county_panel.csv`.
 
 _Source portal: HRSA AHRF, https://data.hrsa.gov/topics/health-workforce/nchwa/ahrf_

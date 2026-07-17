@@ -1,4 +1,4 @@
-# `regression-data-base.csv` — Data Dictionary
+# `michigan_nurse_county_panel.csv` — Data Dictionary
 
 **Panel structure**: 83 Michigan counties × 13 years (2010–2023, with 2018 absent from underlying AHRF spine). 1,079 rows × 131 columns.
 

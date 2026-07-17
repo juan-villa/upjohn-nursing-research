@@ -17,9 +17,9 @@
 PY        := python3
 NB        := jupyter nbconvert --to notebook --execute --inplace \
              --ExecutePreprocessor.timeout=600
-PANEL     := data/analytic/claude_merge_recon_neigh_w_final_reg_v2.csv
+PANEL     := data/analytic/michigan_nurse_county_panel.csv
 MECH_OUT  := outputs/mechanism_model_results.csv
-PAPER_TEX := michigan_nurse_workforce_revised-FINAL
+PAPER_TEX := michigan_nurse_workforce
 
 .DEFAULT_GOAL := help
 .PHONY: help setup results mechanism tables figures paper clean check
@@ -36,8 +36,8 @@ results: tables figures
 
 # ---- Fixed-effects / policy-lever models ----------------------------------
 mechanism: $(MECH_OUT)
-$(MECH_OUT): $(PANEL) notebooks/mechanism_models_policy_levers_v3.ipynb
-	cd notebooks && $(NB) mechanism_models_policy_levers_v3.ipynb
+$(MECH_OUT): $(PANEL) notebooks/mechanism_models.ipynb
+	cd notebooks && $(NB) mechanism_models.ipynb
 	@echo ">> Model results written to $(MECH_OUT)"
 
 # ---- Regression tables (the paper's Table 3-7 numbers) --------------------
@@ -49,7 +49,7 @@ tables: mechanism
 # The notebook also renders other maps locally; only the paper's map is tracked
 # (see .gitignore).
 figures:
-	cd notebooks && $(NB) new-heatmaps.ipynb
+	cd notebooks && $(NB) nurse_supply_maps.ipynb
 	@echo ">> Map written to figures/heatmap_rn_lpn_per_100k_2023.png"
 
 # ---- Compile the paper ----------------------------------------------------

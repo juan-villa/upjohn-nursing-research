@@ -9,10 +9,7 @@ document lists every source, its license status, and where to obtain it.
 
 | Path | Contents | Status |
 |---|---|---|
-| `data/analytic/regression-data-base.csv` | Canonical county x year panel (83 counties, 2010-2023, ~140 columns). Feeds the main regression tables. | committed (derived aggregate) |
-| `data/analytic/claude_merge_recon_neigh_w_final_reg_v2.csv` | Panel used by the mechanism / policy-lever models and the maps. | committed (derived aggregate) |
-| `data/analytic/final-regressions-data.csv` | Panel snapshot used by the heatmap notebook. | committed (derived aggregate) |
-| `data/analytic/full-in-progress.rebuilt.csv` | Intermediate build reference. | committed |
+| `data/analytic/michigan_nurse_county_panel.csv` | Canonical county x year panel (83 counties, 2010-2023). Feeds both the fixed-effects models and the nurse-supply map. | committed (derived aggregate) |
 | `data/shp/cb_2022_us_county_20m.*` | US Census cartographic county boundaries. | committed (public domain) |
 
 These aggregated panels are sufficient to reproduce every result in the paper.
